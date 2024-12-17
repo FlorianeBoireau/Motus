@@ -1,16 +1,9 @@
 
-
 function tryWord(word, base) {
 	// TODO: fix jeu sensible à la casse.
 	if (word === base) {
 		return true
     } else {
-        
-        let notInWord = [];
-        
-    
-    
-    
     return { wellPlaced: wellPlaced, missplaced: missplaced, notInWord: notInWord }
   }
 }
@@ -19,14 +12,14 @@ function tryWord(word, base) {
 function goodLetters(base,word) {
     let arrayBase = base.split('');
     let arrayWord = word.split('');
-    let wellPlaced = [];
+    let wellPlaced = []
 
     for (let i = 0; i < arrayBase.length; i++) {
         if (arrayBase[i] === arrayWord[i]) {
             wellPlaced.push(arrayWord[i]);
         } 
     }
-    console.log(wellPlaced)
+    // console.log(wellPlaced)
     return wellPlaced
 }
 console.log(goodLetters("hello","hxllo"))
@@ -42,19 +35,27 @@ function badLetters(base, word) {
             missplaced.push(arrayWord[i])
         }
     }
-    console.log(missplaced)
+    // console.log(missplaced)
     return missplaced
 }
-console.log(badLetters("hello","lo"))
+console.log(badLetters("hello","holle"))
 
 // verifier les lettres absentes
-function notLetters() {
+function notLetters(base,word) {
+    let arrayBase = base.split('');
+    let arrayWord = word.split('');
+    let notInWord = [];
+
     for (const char of arrayWord) {
-    	if (arrayBase.includes(char) === false) {
-      	notInWord.push(char)
-      }
+        if (arrayBase.includes(char) === false) {
+        notInWord.push(char)
+        }
     }
+    // console.log(notInWord)
+    return notInWord
 }
+console.log(notLetters("dictionnaire","dictipnnaires"))
+
 function guess() {
 	let base = 'dictionnaire'
 	let word = document.getElementById("word").value
