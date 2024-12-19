@@ -1,10 +1,21 @@
 
-function tryWord(word, base) {
+function tryWord(base, word) {
 	// TODO: fix jeu sensible à la casse.
+    base = base.toLowerCase()
+    word = word.toLowerCase()
+
 	if (word === base) {
-		return true
+		return {
+            wellPlaced: base.split(''),
+            missplaced: [],
+            notInWord: [] 
+        }
     } else {
-    return { wellPlaced: goodLetters(base,word) , missplaced: badLetters(base, word), notInWord: notLetters(base,word)}
+    return { 
+        wellPlaced: goodLetters(base,word) , 
+        missplaced: badLetters(base, word), 
+        notInWord: notLetters(base,word)
+        }
     }
 }
 // console.log(tryWord(word, base))
@@ -64,12 +75,12 @@ function guess() {
     console.log(result)
     document.getElementById("word").value = ''
     document.getElementById("try").innerText = word
-    document.getElementById("well").innerText = `Bien placé: ${result.wellPlaced.join(', ')}`
-    document.getElementById("miss").innerText = `Mal placé: ${result.missplaced.join(', ')}`
-    document.getElementById("not").innerText = `Pas dans le mot: ${result.notInWord.join(', ')}`
-    if(result.wellPlaced.length === base.length) {
-        // console.log(result.wellPlaced.length)
-        // console.log(base.length)
+    document.getElementById("well").innerText = `Bien placé: ${(result.wellPlaced || []).join(', ')}`
+    document.getElementById("miss").innerText = `Mal placé: ${(result.missplaced || []).join(', ')}`
+    document.getElementById("not").innerText = `Pas dans le mot: ${(result.notInWord || []).join(', ')}`
+    if(result.wellPlaced.length == base.length) {
+        console.log(result.wellPlaced)
         document.getElementById("win").innerText = `Vous avez gagné`
+        
     }
 }
