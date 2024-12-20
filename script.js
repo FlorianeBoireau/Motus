@@ -12,7 +12,7 @@ function tryWord(base, word) {
         }
     } else {
     return { 
-        wellPlaced: goodLetters(base,word) , 
+        wellPlaced: goodLetters(base,word), 
         missplaced: badLetters(base, word), 
         notInWord: notLetters(base,word)
         }
@@ -40,7 +40,7 @@ function goodLetters(base,word) {
     return wellPlaced
 }
 // console.log(goodLetters("hello","hello"))
-module.exports = { goodLetters }
+// module.exports = { goodLetters }
 
 // vérifier les lettres mal placée
 function badLetters(base, word) {
