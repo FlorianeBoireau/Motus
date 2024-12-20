@@ -23,9 +23,14 @@ function tryWord(base, word) {
 
 // vérifier les lettres bien placée
 function goodLetters(base,word) {
+    if (typeof(word) !== "string" || word === "") {
+        return "il faut des mots"
+    }
+
     let arrayBase = base.split('');
     let arrayWord = word.split('');
     let wellPlaced = []
+    
     for (let i = 0; i < arrayBase.length; i++) {
         if (arrayBase[i] === arrayWord[i]) {
             wellPlaced.push(arrayWord[i]);
@@ -34,7 +39,8 @@ function goodLetters(base,word) {
     // console.log(wellPlaced)
     return wellPlaced
 }
-// console.log(goodLetters("hello","hxllo"))
+// console.log(goodLetters("hello","hello"))
+module.exports = { goodLetters }
 
 // vérifier les lettres mal placée
 function badLetters(base, word) {
@@ -71,7 +77,7 @@ function notLetters(base,word) {
 function guess() {
 	let base = 'dictionnaire'
 	let word = document.getElementById("word").value
-	let result = tryWord(word, base)
+	let result = tryWord(base, word)
     console.log(result)
     document.getElementById("word").value = ''
     document.getElementById("try").innerText = word
